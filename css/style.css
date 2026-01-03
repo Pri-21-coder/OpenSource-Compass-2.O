@@ -9,6 +9,11 @@
     --text-dark: #2E2E2E;
     --success-green: #3CCF91;
     --white: #FFFFFF;
+    
+    /* New Animation & Glassmorphism Variables */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --transition-speed: 0.3s;
+    --anim-curve: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* =========================
@@ -25,6 +30,7 @@ body {
     background-color: var(--white);
     color: var(--text-dark);
     line-height: 1.6;
+    overflow-x: hidden; /* Prevents scrollbars during animations */
 }
 
 a {
@@ -38,7 +44,6 @@ ul {
 
 /* =========================
    Layout Helpers
-========================= */
 .container {
     width: 84%;
     max-width: 1200px;
@@ -63,6 +68,11 @@ header h1 {
     font-size: 22px;
 }
 
+header h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
 nav {
     display: flex;
     align-items: center;
@@ -75,8 +85,8 @@ nav a {
     font-weight: 500;
 }
 
-nav a:hover {
-    color: var(--secondary-blue);
+nav a:hover::after {
+    width: 100%;
 }
 
 .hamburger {
@@ -122,24 +132,31 @@ nav a:hover {
     font-size: 18px;
     margin-bottom: 32px;
 }
-
 .hero button {
     background-color: var(--secondary-blue);
     color: var(--white);
     border: none;
     padding: 14px 28px;
     font-size: 16px;
-    border-radius: 6px;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(77, 150, 255, 0.3);
 }
 
 .hero button:hover {
     background-color: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(77, 150, 255, 0.4);
+}
+
+.hero button:active {
+    transform: translateY(0);
 }
 
 /* =========================
    Section Common
-========================= */
 section {
     padding: 64px 8%;
 }
@@ -156,15 +173,28 @@ section p {
 }
 
 /* =========================
-   Cards
+   Cards & Grid
 ========================= */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
+    margin-top: 32px;
 }
 
+/* Glassmorphism Pattern */
 .card {
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--anim-curve), transform 0.8s var(--anim-curve);
+}
+
+.fade-in-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
     background-color: var(--white);
     padding: 24px;
     border-radius: 8px;
@@ -177,8 +207,67 @@ section p {
 }
 
 /* =========================
-   Programs Section
+   Why Section - Specific Styling
 ========================= */
+.why-cards .card {
+    background-color: var(--white);
+    border: 1px solid #E5E7EB;
+    padding: 32px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.why-cards .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    border-color: var(--secondary-blue);
+}
+
+/* Icon Styling for Why Section */
+.why-cards .icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--secondary-blue), #3b82f6);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.why-cards .card:hover .icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.why-cards .icon svg {
+    width: 32px;
+    height: 32px;
+    stroke: white;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+/* Why Section Card Headings */
+.why-cards .card h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+/* Why Section Card Text */
+.why-cards .card p {
+    font-size: 14px;
+    color: #6B7280;
+    max-width: 100%;
+    margin-bottom: 0;
+}
+
+/* =========================
+   Programs Section
 .programs {
     background-color: var(--light-gray);
 }
@@ -209,7 +298,7 @@ footer p {
 }
 
 /* =========================
-   Responsive Design
+   Responsive
 ========================= */
 @media (max-width: 768px) {
     header {
@@ -251,6 +340,26 @@ footer p {
         width: 100%;
         font-size: 20px;
         margin: 20px 0;
+    }
+
+    .profile-dropdown {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .profile-icon {
+        width: 100%;
+        border-radius: 6px;
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .profile-menu {
+        position: static;
+        box-shadow: none;
+        border: 1px solid #e0e0e0;
+        margin-top: 10px;
+        border-radius: 6px;
     }
 
     .hero {
