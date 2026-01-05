@@ -135,7 +135,7 @@
 
 </body>
 </html>
-ink href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<ink href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
     <style>
@@ -153,33 +153,39 @@ ink href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&displa
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+            max-width:100%;
         }
 
         body {
             background-color: var(--white);
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x:hidden;
+            width:100%;
+            
         }
 
         /* ---------- Navbar ---------- */
         header {
-            background-color: var(--white);
-            border-bottom: 1px solid #eaeaea;
+            background-color: rgb(18,18,64);
+            border-bottom: 1px solid rgb(18,18,64);
             padding: 16px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width:100%;
+            box-sizing: border-box;
         }
 
         header h1 {
-            color: var(--primary-blue);
+            color: var(--white);
             font-size: 22px;
         }
 
         nav a {
             margin-left: 24px;
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--white);
             font-weight: 500;
         }
 
@@ -189,16 +195,19 @@ ink href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&displa
 
         /* ---------- Hero Section ---------- */
         .hero {
-            background-color: var(--light-gray);
+            background-image: url(assets/b.jpeg);
+            background-size: cover;
             padding: 80px 8%;
+            width:100%;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            box-sizing: border-box;
         }
 
         .hero h2 {
             font-size: 42px;
-            color: var(--primary-blue);
+            color: var(--white);
             margin-bottom: 16px;
         }
 
@@ -206,6 +215,7 @@ ink href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&displa
             max-width: 600px;
             font-size: 18px;
             margin-bottom: 32px;
+            color:var(--white);
         }
 
         .hero button {
@@ -225,6 +235,7 @@ ink href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&displa
         /* ---------- Section Common ---------- */
         section {
             padding: 64px 8%;
+            background-color:rgb(191, 227, 241);
         }
 
         section h3 {
@@ -269,8 +280,23 @@ ink href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&displa
 
         /* ---------- Programs Section ---------- */
         .programs {
-            background-color: var(--light-gray);
+            background-color: rgb(202, 234, 243);
         }
+
+
+        
+    #flex-col{
+    background: rgba(255, 255, 255, 0); 
+    border: 2px solid rgba(68, 56, 165, 0.25);
+    border-radius: 2rem;
+    padding: 0.3rem 3rem;
+    color:rgb(18,18,64);
+    backdrop-filter: blur(7px);
+    display: inline-flex;
+    flex-direction:column;
+    align-items: center;
+	
+    }
 
         .badge {
             display: inline-block;
@@ -388,12 +414,12 @@ ink href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&displa
 
 <!-- Programs Section -->
 <section class="programs">
-    <h3>Open Source Programs</h3>
+    <h3 id="flex-col">Open Source Programs </h3>
     <p>
         Explore ongoing and upcoming open-source programs with timelines,
         prerequisites, and official resources.
     </p>
-
+    
     <div class="card-container">
         <div class="card">
             <h4>Social Winter of Code</h4>
