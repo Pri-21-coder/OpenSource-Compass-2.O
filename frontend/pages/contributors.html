@@ -6,7 +6,6 @@
   <link rel="icon" href="../library/assets/favicon.png" type="image/png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Font Awesome (REQUIRED for logo) -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -17,10 +16,28 @@
     rel="stylesheet"
   />
 
-  <!-- Global CSS -->
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/contributors.css" />
   <link rel="stylesheet" href="../css/chatbot.css" /> 
+
+  <style>
+    /* Dynamic Dark Mode Styling for the Heading 
+       Matches the "Why OpenSource Compass" gradient from home.css 
+    */
+    body.dark-mode .contributors-section h3 {
+      background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        var(--primary-gold) 55%,
+        var(--secondary-gold) 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+    }
+  </style>
 </head>
 
 
@@ -31,11 +48,27 @@
       <section class="contributors-section">
         <h3>Contributors</h3>
         <p>People who have helped build and improve OpenSource Compass.</p>
+         <div class="contributors-stats" id="contributors-stats"></div>
+
+  <div class="contributors-controls">
+    <input
+      id="contributor-search"
+      type="search"
+      placeholder="Search contributors…"
+      aria-label="Search contributors"
+    />
+
+    <label class="bot-toggle">
+      <input type="checkbox" id="toggle-bots" checked />
+      Show bots
+    </label>
+  </div>
 
         <div class="contributors-status" id="contributors-status" aria-live="polite"></div>
 
         <div class="contributors-grid" id="contributors-grid" aria-live="polite"></div>
       </section>
+      
     </main>
 
     <div id="footer"></div>
@@ -49,6 +82,6 @@
 
   <button id="scrollTopBtn" title="Back to Top">
    <i class="fas fa-chevron-up"></i>
-  </button
+  </button>
   </body>
 </html>
