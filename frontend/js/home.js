@@ -237,3 +237,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   counters.forEach((counter) => observer.observe(counter));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const journey = document.querySelector(".why-journey");
+
+  if (!journey) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        journey.classList.add("is-visible");
+        observer.unobserve(journey);
+      }
+    },
+    { threshold: 0.4 }
+  );
+
+  observer.observe(journey);
+});

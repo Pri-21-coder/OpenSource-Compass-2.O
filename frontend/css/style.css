@@ -13,6 +13,20 @@ body {
   overflow-x: hidden;
 }
 
+@keyframes goldenLineReveal {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 90px;
+    opacity: 1;
+  }
+}
+
+
+/* =========================
+   THEME VARIABLES (CLASSIC)
 :root {
   --primary-gold: #d4af37;
   --secondary-gold: #b8860b;
@@ -215,13 +229,24 @@ section h3 {
 section h3::after {
   content: "";
   display: block;
-  width: 90px;
   height: 3px;
   margin: 1.2rem auto 0;
-  background: linear-gradient(90deg,
-      var(--primary-gold),
-      var(--secondary-gold));
+  background: linear-gradient(
+    90deg,
+    var(--primary-gold),
+    var(--secondary-gold)
+  );
+  border-radius: 2px;
+  animation: goldenLineReveal 0.9s ease-out forwards;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  section h3::after {
+    animation: none;
+    width: 90px;
+  }
+}
+
 
 section p {
   text-align: center;
@@ -592,8 +617,23 @@ section p {
   cursor: pointer;
 }
 
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid transparent;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
+}
+
 .card:hover {
-  transform: translateY(-15px) scale(1.05);
+  transform: translateY(-6px);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
   border-color: rgba(212, 175, 55, 0.3);
   cursor: pointer;
@@ -637,6 +677,11 @@ section p {
   line-height: 1.65;
 }
 
+body.dark-mode .card:hover::before {
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 22px rgba(228, 199, 106, 0.45);
+}
+
 body.dark-mode .card {
   background: linear-gradient(
     145deg,
@@ -650,7 +695,7 @@ body.dark-mode .card {
 }
 
 body.dark-mode .card:hover {
-  transform: translateY(-15px) scale(1.05);
+  transform: translateY(-6px);
   box-shadow:
     0 35px 80px rgba(0, 0, 0, 0.9),
     0 0 0 1px rgba(228, 199, 106, 0.35);
@@ -1204,7 +1249,7 @@ body.has-chatbot #scrollTopBtn {
 
 /* =========================
    CURSOR HIGHLIGHT (FEATURE #495)*/
-   CURSOR HIGHLIGHT (FEATURE #495)
+/* CURSOR HIGHLIGHT (FEATURE #495) */
 #cursor-highlight {
   position: fixed;
   top: 0;
