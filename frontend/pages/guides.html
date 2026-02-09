@@ -114,6 +114,57 @@ body.dark-mode .guide-list li::after {
 body.dark-mode .guide-list li:hover::after {
     left: 100%;
 }
+
+/* =========================================
+   EQUAL SIZE PRACTICE ITEMS - 4 ROWS x 2 COLUMNS
+========================================= */
+.practices-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Fixed 2 columns */
+    grid-template-rows: repeat(4, 1fr); /* Fixed 4 rows */
+    gap: 1.5rem;
+    align-items: stretch; /* Force equal heights */
+}
+
+/* Responsive: Stack to 1 column on mobile */
+@media (max-width: 768px) {
+    .practices-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+}
+
+.practice-item {
+    display: flex;
+    flex-direction: column;
+    min-height: 300px; /* Fixed minimum height for all boxes */
+    height: 100%; /* Fill grid cell */
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.practice-item .icon {
+    flex-shrink: 0; /* Icon doesn't grow/shrink */
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    height: 2.5rem; /* Fixed height for icon */
+    line-height: 1;
+}
+
+.practice-item h4 {
+    flex-shrink: 0; /* Heading doesn't shrink */
+    min-height: 4.5em; /* Fixed space for headings */
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.practice-item p {
+    flex-grow: 1; /* Description fills remaining space */
+    margin: 0;
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+}
 </style>
 </head>
 <body>
@@ -160,7 +211,7 @@ body.dark-mode .guide-list li:hover::after {
       <li>
       <span class="step">2</span>
       <h4>Explore small projects</h4>
-      <p>Contribute to beginner-friendly projects to build confidence and experience. Look for tags like “good first issue.”</p>
+      <p>Contribute to beginner-friendly projects to build confidence and experience. Look for tags like "good first issue."</p>
     </li>
     <li>
       <span class="step">3</span>
@@ -231,7 +282,7 @@ body.dark-mode .guide-list li:hover::after {
       <div class="icon">🏷️</div>
       <div class="content">
         <h4>Understanding issue labels</h4>
-        <p>Recognize labels like “good first issue” or “help wanted” to know what the project expects and where you can contribute.</p>
+        <p>Recognize labels like "good first issue" or "help wanted" to know what the project expects and where you can contribute.</p>
       </div>
     </li>
     <li>
@@ -268,7 +319,7 @@ body.dark-mode .guide-list li:hover::after {
     <div class="practice-item">
       <div class="icon">🎨</div>
       <h4>Maintain code style and formatting</h4>
-      <p>Keep your code consistent with the project’s style and formatting conventions.</p>
+      <p>Keep your code consistent with the project's style and formatting conventions.</p>
     </div>
     <div class="practice-item">
       <div class="icon">🤝</div>
@@ -289,7 +340,7 @@ body.dark-mode .guide-list li:hover::after {
   <h4>Ask before working on large or breaking changes</h4>
   <p>
     Discuss major changes with maintainers beforehand to ensure alignment with
-    the project’s direction.
+    the project's direction.
   </p>
 </div>
 
@@ -337,7 +388,7 @@ body.dark-mode .guide-list li:hover::after {
     </li>
     <li>
       <span class="mistake-icon">6</span>
-      <p>Ignoring or misunderstanding maintainers’ feedback</p>
+      <p>Ignoring or misunderstanding maintainers' feedback</p>
     </li>
     <li>
       <span class="mistake-icon">7</span>
