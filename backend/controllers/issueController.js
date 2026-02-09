@@ -74,6 +74,10 @@ export const analyzeIssue = async (req, res) => {
         console.error("Analysis Error:", error);
         res.status(500).json({
             error: "Failed to analyze issue. " + error.message
+        });
+    }
+};
+
 const parseGitHubUrl = (url) => {
     try {
         const urlObj = new URL(url);

@@ -4,9 +4,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('issueInsightsForm');
-    const submitBtn = document.getElementById('issueSubmitBtn');
-    const resultSection = document.getElementById('issueResultSection');
-    const resultContent = document.getElementById('issueResultContent');
+    const submitBtn = document.getElementById('insightsSubmitBtn');
+    const resultSection = document.getElementById('insightsResultSection');
+    const resultContent = document.getElementById('insightsResultContent');
 
     if (form) {
         form.addEventListener('submit', async (e) => {
