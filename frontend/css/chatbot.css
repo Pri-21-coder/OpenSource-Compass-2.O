@@ -272,3 +272,32 @@ body.dark-mode .chat-input-area {
     background: var(--primary-gold);
     color: var(--deep-navy);
 }
+
+.suggestions {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-top: 10px;
+}
+
+.suggestion-chip {
+background: white;
+border: 1px solid var(--primary-gold);
+color: var(--deep-navy);
+padding: 6px 12px;
+border-radius: 20px;
+font-size: 12px;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.suggestion-chip:hover {
+background: var(--primary-gold);
+color: var(--deep-navy);
+transform: translateY(-2px);
+}
+
+body.dark-mode .suggestion-chip {
+background: var(--chat-bot-msg-bg);
+color: var(--chat-text);
+}
