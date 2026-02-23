@@ -700,20 +700,21 @@
             padding: 2rem;
             text-align: center;
             box-shadow: var(--shadow-main);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: default;
-            position: relative;
-            animation: fadeInUp 1s var(--bounce-curve) forwards;
-            opacity: 0;
+            border: 1px solid transparent;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(212, 175, 55, 0.35);
         }
 
         body.dark-mode .step-card {
             background: var(--charcoal-dark);
-        }
-
-        .step-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
         }
 
         /* Step Icon */
@@ -906,20 +907,21 @@
             padding: 2rem;
             text-align: center;
             box-shadow: var(--shadow-main);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: default;
-            position: relative;
-            animation: fadeInUp 1s var(--bounce-curve) forwards;
-            opacity: 0;
+            border: 1px solid transparent;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(212, 175, 55, 0.35);
         }
 
         body.dark-mode .feature-card {
             background: var(--charcoal-dark);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
         }
 
         /* Feature Icon */
@@ -1176,11 +1178,6 @@
             z-index: -1;
         }
 
-        .feature-icon {
-            display: inline-block;
-            animation: iconFloat 6s ease-in-out infinite;
-        }
-
         .feature-card:hover .feature-icon {
             animation-play-state: paused;
         }
@@ -1264,20 +1261,21 @@
             padding: 2rem;
             text-align: center;
             box-shadow: var(--shadow-main);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            cursor: default;
-            animation: fadeInUp 1s var(--bounce-curve) forwards;
-            opacity: 0;
+            border: 1px solid transparent;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .track-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(212, 175, 55, 0.35);
         }
 
         body.dark-mode .track-card {
             background: var(--charcoal-dark);
-        }
-
-        .track-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
         }
 
         /* Track Icon */
@@ -1458,20 +1456,21 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow-main);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            cursor: pointer;
-            animation: fadeInUp 1s var(--bounce-curve) forwards;
-            opacity: 0;
+            border: 1px solid transparent;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(212, 175, 55, 0.35);
         }
 
         body.dark-mode .project-card {
             background: var(--charcoal-dark);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
         }
 
         /* Project Image */
@@ -1676,12 +1675,10 @@
 
         /* Timeline Cards */
         .timeline-card {
-            position: relative;
             width: 45%;
-            padding: 1.5rem 2rem;
+            padding: 1.5rem;
             background: var(--warm-cream);
             border-radius: 20px;
-            margin-bottom: 3rem;
             box-shadow: var(--shadow-main);
             transition: transform 0.3s, box-shadow 0.3s, background 0.5s;
             opacity: 0;
@@ -2031,6 +2028,150 @@
             .protip-card {
                 padding-top: 3.4rem;
             }
+        }
+
+        body.dark-mode .step-card:hover,
+        body.dark-mode .feature-card:hover,
+        body.dark-mode .track-card:hover,
+        body.dark-mode .project-card:hover,
+        body.dark-mode .timeline-card:hover {
+            border-color: rgba(228, 199, 106, 0.5);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .step-card,
+            .feature-card,
+            .track-card,
+            .project-card,
+            .timeline-card {
+                transition: none !important;
+                transform: none !important;
+            }
+        }
+
+        /* =====================================
+        GLOBAL PREMIUM CARD HOVER SYSTEM
+        ===================================== */
+
+        .step-card,
+        .feature-card,
+        .track-card,
+        .project-card,
+        .timeline-card,
+        .eligibility-card,
+        .protip-card {
+            position: relative;
+            border: 1px solid transparent;
+            transition:
+                transform 0.35s var(--bounce-curve),
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
+            transform-style: preserve-3d;
+        }
+
+        /* Glow border effect */
+        .step-card::before,
+        .feature-card::before,
+        .track-card::before,
+        .project-card::before,
+        .timeline-card::before,
+        .eligibility-card::before,
+        .protip-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(212, 175, 55, 0);
+            transition: border-color 0.35s ease;
+            pointer-events: none;
+        }
+
+        /* Hover */
+        .step-card:hover,
+        .feature-card:hover,
+        .track-card:hover,
+        .project-card:hover,
+        .timeline-card:hover,
+        .eligibility-card:hover,
+        .protip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .step-card:hover::before,
+        .feature-card:hover::before,
+        .track-card:hover::before,
+        .project-card:hover::before,
+        .timeline-card:hover::before,
+        .eligibility-card:hover::before,
+        .protip-card:hover::before {
+            border-color: rgba(212, 175, 55, 0.45);
+        }
+
+        /* Dark mode glow */
+        body.dark-mode .step-card:hover::before,
+        body.dark-mode .feature-card:hover::before,
+        body.dark-mode .track-card:hover::before,
+        body.dark-mode .project-card:hover::before,
+        body.dark-mode .timeline-card:hover::before,
+        body.dark-mode .eligibility-card:hover::before,
+        body.dark-mode .protip-card:hover::before {
+            border-color: rgba(228, 199, 106, 0.6);
+        }
+
+        /* =====================================
+        GLOBAL ICON ANIMATION
+        ===================================== */
+
+        .step-icon,
+        .feature-icon,
+        .track-icon,
+        .timeline-icon,
+        .protip-index {
+            transition:
+                transform 0.4s var(--bounce-curve),
+                box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        /* Icon glow ring */
+        .step-icon::after,
+        .feature-icon::after,
+        .track-icon::after,
+        .timeline-icon::after,
+        .protip-index::after {
+            content: "";
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Hover animation */
+        .step-card:hover .step-icon,
+        .feature-card:hover .feature-icon,
+        .track-card:hover .track-icon,
+        .timeline-card:hover .timeline-icon,
+        .protip-card:hover .protip-index {
+            transform: rotate(-8deg) scale(1.15);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .step-card:hover .step-icon::after,
+        .feature-card:hover .feature-icon::after,
+        .track-card:hover .track-icon::after,
+        .timeline-card:hover .timeline-icon::after,
+        .protip-card:hover .protip-index::after {
+            border-color: rgba(212, 175, 55, 0.6);
+        }
+
+        body.dark-mode .step-card:hover .step-icon::after,
+        body.dark-mode .feature-card:hover .feature-icon::after,
+        body.dark-mode .track-card:hover .track-icon::after,
+        body.dark-mode .timeline-card:hover .timeline-icon::after,
+        body.dark-mode .protip-card:hover .protip-index::after {
+            border-color: rgba(228, 199, 106, 0.7);
         }
     </style>
     <link rel='manifest' href='../../../manifest.json' />
