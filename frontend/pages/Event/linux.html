@@ -327,11 +327,6 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        .about-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
         .about-card h3 {
             color: var(--primary-gold);
             margin-bottom: 0.6rem;
@@ -440,11 +435,6 @@
 
         .track-card:hover::before {
             opacity: 1;
-        }
-
-        .track-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-hover);
         }
 
         /* ---------- ICON ---------- */
@@ -573,11 +563,6 @@
             opacity: 1;
         }
 
-        .eligibility-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
         /* ---------- ICON ---------- */
 
         .eligibility-icon {
@@ -700,11 +685,6 @@
             opacity: 1;
         }
 
-        .mentorship-step:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-hover);
-        }
-
         /* ---------- ICON ---------- */
 
         .step-icon {
@@ -825,12 +805,6 @@
         .outcome-card:hover::before {
             opacity: 1;
         }
-
-        .outcome-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-hover);
-        }
-
         /* ---------- ICON ---------- */
 
         .outcome-icon {
@@ -936,11 +910,6 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        .apply-step:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-hover);
-        }
-
         /* ---------- STEP NUMBER ---------- */
 
         .step-number {
@@ -1005,6 +974,162 @@
         @media (max-width: 600px) {
             .apply-steps {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        /* =========================================
+        ADVANCED GLOBAL CARD HOVER SYSTEM
+        ========================================= */
+
+        .about-card,
+        .track-card,
+        .eligibility-card,
+        .mentorship-step,
+        .outcome-card,
+        .apply-step {
+            position: relative;
+            border-radius: 22px;
+            border: 1px solid transparent;
+            transform-style: preserve-3d;
+            transition:
+                transform 0.45s var(--bounce-curve),
+                box-shadow 0.45s ease,
+                border-color 0.45s ease,
+                background 0.45s ease;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        /* ---------------- SHIMMER LAYER ---------------- */
+
+        .about-card::before,
+        .track-card::before,
+        .eligibility-card::before,
+        .mentorship-step::before,
+        .outcome-card::before,
+        .apply-step::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(
+                120deg,
+                transparent 30%,
+                rgba(255,255,255,0.4),
+                transparent 70%
+            );
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+        }
+
+        /* ---------------- RADIAL GLOW ---------------- */
+
+        .about-card::after,
+        .track-card::after,
+        .eligibility-card::after,
+        .mentorship-step::after,
+        .outcome-card::after,
+        .apply-step::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(
+                circle at var(--x, 50%) var(--y, 50%),
+                rgba(212,175,55,0.25),
+                transparent 60%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        /* ---------------- HOVER EFFECT ---------------- */
+
+        .about-card:hover,
+        .track-card:hover,
+        .eligibility-card:hover,
+        .mentorship-step:hover,
+        .outcome-card:hover,
+        .apply-step:hover {
+            transform: translateY(-12px) rotateX(3deg) rotateY(-3deg);
+            box-shadow:
+                0 20px 45px rgba(0,0,0,0.18),
+                0 10px 25px rgba(212,175,55,0.2);
+            border-color: rgba(212,175,55,0.4);
+        }
+
+        /* shimmer movement */
+        .about-card:hover::before,
+        .track-card:hover::before,
+        .eligibility-card:hover::before,
+        .mentorship-step:hover::before,
+        .outcome-card:hover::before,
+        .apply-step:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* glow activate */
+        .about-card:hover::after,
+        .track-card:hover::after,
+        .eligibility-card:hover::after,
+        .mentorship-step:hover::after,
+        .outcome-card:hover::after,
+        .apply-step:hover::after {
+            opacity: 1;
+        }
+
+        /* ---------------- ICON LIFT ---------------- */
+
+        .track-card:hover .track-icon,
+        .eligibility-card:hover .eligibility-icon,
+        .mentorship-step:hover .step-icon,
+        .outcome-card:hover .outcome-icon {
+            transform: translateY(-6px) scale(1.1);
+            transition: transform 0.4s var(--bounce-curve);
+        }
+
+        /* ---------------- DARK MODE BOOST ---------------- */
+
+        body.dark-mode .about-card:hover,
+        body.dark-mode .track-card:hover,
+        body.dark-mode .eligibility-card:hover,
+        body.dark-mode .mentorship-step:hover,
+        body.dark-mode .outcome-card:hover,
+        body.dark-mode .apply-step:hover {
+            box-shadow:
+                0 25px 55px rgba(0,0,0,0.5),
+                0 0 30px rgba(228,199,106,0.35);
+            border-color: rgba(228,199,106,0.6);
+        }
+
+        /* ---------------- ACCESSIBILITY ---------------- */
+
+        @media (prefers-reduced-motion: reduce) {
+            .about-card,
+            .track-card,
+            .eligibility-card,
+            .mentorship-step,
+            .outcome-card,
+            .apply-step {
+                transition: none !important;
+                transform: none !important;
+            }
+
+            .about-card::before,
+            .track-card::before,
+            .eligibility-card::before,
+            .mentorship-step::before,
+            .outcome-card::before,
+            .apply-step::before,
+            .about-card::after,
+            .track-card::after,
+            .eligibility-card::after,
+            .mentorship-step::after,
+            .outcome-card::after,
+            .apply-step::after {
+                display: none !important;
             }
         }
     </style>
@@ -1516,7 +1641,7 @@
         }, observerOptions);
 
         // Observe elements with enhanced animations
-        document.querySelectorAll('.track-card, .process-step, .benefit-card').forEach((el, index) => {
+        document.querySelectorAll('.about-card, .track-card, .eligibility-card, .mentorship-step, .outcome-card, .apply-step').forEach((el, index) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px) scale(0.95)';
             el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -1530,6 +1655,31 @@
             if (hero && scrolled < hero.offsetHeight) {
                 hero.style.transform = `translateY(${scrolled * 0.3}px)`;
             }
+        });
+    </script>
+
+    <script>
+        /* =========================================
+        CURSOR FOLLOW RADIAL GLOW
+        ========================================= */
+
+        const cards = document.querySelectorAll(
+        '.about-card, .track-card, .eligibility-card, .mentorship-step, .outcome-card, .apply-step'
+        );
+
+        cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--x', `${x}%`);
+            card.style.setProperty('--y', `${y}%`);
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.setProperty('--x', `50%`);
+            card.style.setProperty('--y', `50%`);
+        });
         });
     </script>
 </body>
