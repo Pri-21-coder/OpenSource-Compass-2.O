@@ -333,6 +333,91 @@
                     <p>Provide details about your contribution to generate a professional description.</p>
                 </div>
 
+                <!-- Smart PR Structure Controls -->
+                <div class="pr-structure-controls">
+                    <button type="button" class="pr-structure-toggle" id="structureToggleBtn" aria-expanded="false">
+                        <div class="pr-structure-toggle-left">
+                            <i class="fas fa-sliders-h"></i>
+                            <span>PR Structure Controls</span>
+                        </div>
+                        <div class="pr-structure-toggle-right">
+                            <span class="pr-structure-badge" id="structureBadge">5 / 5 active</span>
+                            <i class="fas fa-chevron-down pr-structure-chevron"></i>
+                        </div>
+                    </button>
+                    <div class="pr-structure-panel" id="structurePanel">
+                        <p class="pr-structure-hint">Choose which sections to include in your generated PR description.
+                        </p>
+                        <div class="pr-structure-options">
+                            <label class="pr-toggle-item" for="toggleSummary">
+                                <div class="pr-toggle-info">
+                                    <i class="fas fa-align-left"></i>
+                                    <div>
+                                        <span class="pr-toggle-label">Include Summary Section</span>
+                                        <span class="pr-toggle-desc">A concise overview of what this PR does</span>
+                                    </div>
+                                </div>
+                                <div class="pr-toggle-switch">
+                                    <input type="checkbox" id="toggleSummary" checked>
+                                    <span class="pr-toggle-slider"></span>
+                                </div>
+                            </label>
+                            <label class="pr-toggle-item" for="toggleChecklist">
+                                <div class="pr-toggle-info">
+                                    <i class="fas fa-tasks"></i>
+                                    <div>
+                                        <span class="pr-toggle-label">Include Checklist</span>
+                                        <span class="pr-toggle-desc">Pre-merge quality checklist for reviewers</span>
+                                    </div>
+                                </div>
+                                <div class="pr-toggle-switch">
+                                    <input type="checkbox" id="toggleChecklist" checked>
+                                    <span class="pr-toggle-slider"></span>
+                                </div>
+                            </label>
+                            <label class="pr-toggle-item" for="toggleBreaking">
+                                <div class="pr-toggle-info">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <div>
+                                        <span class="pr-toggle-label">Include Breaking Changes</span>
+                                        <span class="pr-toggle-desc">Highlight any breaking or disruptive changes</span>
+                                    </div>
+                                </div>
+                                <div class="pr-toggle-switch">
+                                    <input type="checkbox" id="toggleBreaking" checked>
+                                    <span class="pr-toggle-slider"></span>
+                                </div>
+                            </label>
+                            <label class="pr-toggle-item" for="toggleScreenshots">
+                                <div class="pr-toggle-info">
+                                    <i class="fas fa-camera"></i>
+                                    <div>
+                                        <span class="pr-toggle-label">Include Screenshots Section</span>
+                                        <span class="pr-toggle-desc">Placeholder for visual evidence of changes</span>
+                                    </div>
+                                </div>
+                                <div class="pr-toggle-switch">
+                                    <input type="checkbox" id="toggleScreenshots" checked>
+                                    <span class="pr-toggle-slider"></span>
+                                </div>
+                            </label>
+                            <label class="pr-toggle-item" for="toggleLinkedIssues">
+                                <div class="pr-toggle-info">
+                                    <i class="fas fa-link"></i>
+                                    <div>
+                                        <span class="pr-toggle-label">Include Linked Issues</span>
+                                        <span class="pr-toggle-desc">Reference related issues and pull requests</span>
+                                    </div>
+                                </div>
+                                <div class="pr-toggle-switch">
+                                    <input type="checkbox" id="toggleLinkedIssues" checked>
+                                    <span class="pr-toggle-slider"></span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
                 <form id="prGeneratorForm">
                     <div class="pr-form-group">
                         <label for="prLink">Issue or PR Link (Optional)</label>
@@ -367,12 +452,57 @@
 
                 <div id="prPreviewSection" class="pr-preview-section">
                     <div class="pr-preview-header">
-                        <h3>Markdown Preview</h3>
-                        <button id="prCopyBtn" class="pr-copy-btn">
-                            <i class="far fa-copy"></i> Copy to Clipboard
+                        <h3>Generated PR Description</h3>
+                        <div class="pr-preview-actions">
+                            <span class="pr-word-count" id="prWordCount">0 words · 0 chars</span>
+                            <button id="prCopyBtn" class="pr-copy-btn" title="Copy to Clipboard">
+                                <i class="far fa-copy"></i> Copy
+                            </button>
+                            <button id="prDownloadBtn" class="pr-copy-btn" title="Download as .md">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pr-editor-hint">
+                        <i class="fas fa-pen"></i> You can edit the text below before copying
+                    </div>
+
+                    <!-- Compact Formatting Strip -->
+                    <div class="pr-format-strip" id="prFormatStrip">
+                        <button type="button" class="pr-fmt-btn" data-action="bold" title="Bold (Ctrl+B)">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button type="button" class="pr-fmt-btn" data-action="italic" title="Italic (Ctrl+I)">
+                            <i class="fas fa-italic"></i>
+                        </button>
+                        <button type="button" class="pr-fmt-btn" data-action="strikethrough" title="Strikethrough">
+                            <i class="fas fa-strikethrough"></i>
+                        </button>
+                        <span class="pr-fmt-sep"></span>
+                        <button type="button" class="pr-fmt-btn" data-action="heading" title="Heading">
+                            <i class="fas fa-heading"></i>
+                        </button>
+                        <button type="button" class="pr-fmt-btn" data-action="code" title="Inline Code">
+                            <i class="fas fa-code"></i>
+                        </button>
+                        <button type="button" class="pr-fmt-btn" data-action="link" title="Link">
+                            <i class="fas fa-link"></i>
+                        </button>
+                        <span class="pr-fmt-sep"></span>
+                        <button type="button" class="pr-fmt-btn" data-action="ul" title="Bullet List">
+                            <i class="fas fa-list-ul"></i>
+                        </button>
+                        <button type="button" class="pr-fmt-btn" data-action="checklist" title="Task List">
+                            <i class="fas fa-tasks"></i>
+                        </button>
+                        <button type="button" class="pr-fmt-btn" data-action="quote" title="Blockquote">
+                            <i class="fas fa-quote-right"></i>
                         </button>
                     </div>
-                    <div id="prPreviewContent" class="pr-preview-content"></div>
+
+                    <textarea id="prEditorTextarea" class="pr-preview-content pr-editable-textarea" spellcheck="false"
+                        placeholder="Your generated PR description will appear here..."></textarea>
                 </div>
             </div>
         </div>
