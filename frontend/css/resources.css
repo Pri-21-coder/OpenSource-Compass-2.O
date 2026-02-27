@@ -644,13 +644,16 @@ body.dark-mode .empty-state {
 }
 
 /* 6. TYPOGRAPHY ACCENTS - Final Override for White Topics */
-body.dark-mode h2,
-body.dark-mode h3, 
+body.dark-mode h2, 
 body.dark-mode h4, 
 body.dark-mode h5,
 body.dark-mode .hero-section h2,
 body.dark-mode .tile-content h5 {
   color: #ffffff !important; /* Forces white on every heading type */
+}
+
+body.dark-mode h3 {
+  color: #b59d5c !important;
 }
 
 body.dark-mode p, 
@@ -750,6 +753,7 @@ body.dark-mode #explanation-box {
   display: none;
 }
 
+
 /* ================================
    Beginner Learning Path Section
 .learning-path-section {
@@ -838,6 +842,7 @@ body.dark-mode #explanation-box {
     align-items: center;
   }
 }
+
 /* Optional: Stagger the cards so they appear one by one */
 .card:nth-child(1) { animation-delay: 0.1s; }
 .card:nth-child(2) { animation-delay: 0.2s; }
