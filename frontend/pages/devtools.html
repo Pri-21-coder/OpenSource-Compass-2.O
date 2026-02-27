@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="../css/pr-generator.css">
     <style>
         /* ==========================================================================
-           DevTools Theme Variables
-           ========================================================================== */
+            DevTools Theme Variables
+            ========================================================================== */
         /* Default Light Theme */
         :root {
             --bg-primary: #c6d6f3;
@@ -37,18 +37,147 @@
             --accent-color: #d4af37;
             --accent-hover: #fce788;
         }
+        /* Default Light Theme */
+:root {
+    --nav-bg: #ecf0c4;           /* Matches your --bg-secondary */
+    --nav-btn-hover-bg: #f1f5f9; /* Matches your --bg-tertiary */
+    --nav-text-main: #1e293b;    /* Dark text for light mode */
+    --nav-text-muted: #dce25e;   /* Muted text for inactive tabs */
+    --nav-border: #cbd5e1;       /* Border for dividers */
+    --nav-accent: #d4af37;       /* Gold accent */
+    --nav-accent-bg: rgba(212, 175, 55, 0.08); /* Faint gold for active tab */
+    --nav-transition: all 0.3s ease;
+}
 
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+    --nav-bg: #1e293b;
+    --nav-btn-hover-bg: #0b111a;
+    --nav-text-main: #e2e8f0;
+    --nav-text-muted: #94a3b8;
+    --nav-border: rgba(255, 255, 255, 0.1);
+    --nav-accent: #d4af37;
+    --nav-accent-bg: rgba(212, 175, 55, 0.15);
+}
+
+/* ==========================================================================
+   Navigation Right Section Styles
+   ========================================================================== */
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+}
+
+.header-tabs {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Tab Buttons */
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--nav-text-muted);
+    padding: 0 1.2rem;
+    height: 100%;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom: 3px solid transparent;
+    transition: var(--nav-transition);
+    position: relative;
+    top: 1.5px; /* Aligns the bottom border perfectly */
+}
+
+.tab-btn i {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+/* Hover State */
+.tab-btn:hover {
+    color: var(--nav-text-main);
+    background: var(--nav-btn-hover-bg);
+}
+
+.tab-btn:hover i {
+    transform: translateY(-2px); /* Slight jump effect on hover */
+}
+
+/* Active State */
+.tab-btn.active {
+    color: var(--nav-accent);
+    border-bottom-color: var(--nav-accent);
+    background: var(--nav-accent-bg);
+}
+
+/* Theme Toggle Button (Overriding your inline styles slightly for better hover) */
+#themeToggle {
+    background: none;
+    border: none;
+    color: var(--nav-accent);
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--nav-transition);
+}
+
+#themeToggle:hover {
+    background: var(--nav-btn-hover-bg);
+    transform: rotate(15deg) scale(1.1); /* Fun little rotation effect */
+}
+
+/* Back Home Link */
+.tools-back {
+    color: var(--nav-text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--nav-transition);
+    border-left: 1px solid var(--nav-border);
+    padding-left: 1.5rem;
+    height: 30px;
+}
+
+.tools-back:hover {
+    color: var(--nav-accent);
+}
+
+.tools-back i {
+    transition: transform 0.2s ease;
+}
+
+.tools-back:hover i {
+    transform: translateX(-4px); /* Arrow points left on hover */
+}
         /* ==========================================================================
-           Global & Layout Styles (Replaced hardcoded hex with variables)
-           ========================================================================== */
+            Global & Layout Styles
+            ========================================================================== */
         
         html.devtools-page,
         html.devtools-page body {
             margin: 0 !important;
             padding: 0 !important;
-            height: 100vh !important;
+            min-height: 100vh !important; /* Changed to min-height to allow expansion */
             width: 100vw !important;
-            overflow: hidden !important;
+            overflow-x: hidden !important; /* Changed to only hide horizontal overflow */
             background: var(--bg-primary) !important;
             transition: var(--theme-transition);
         }
@@ -90,6 +219,8 @@
             flex-shrink: 0;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: var(--theme-transition);
+            position: sticky; /* Optional: keeps nav at top when scrolling */
+            top: 0;
         }
 
         .tools-brand {
@@ -166,7 +297,7 @@
 
         /* Content Area */
         .tools-main-content {
-            flex: 1;
+            flex: 1 0 auto; /* Ensures content pushes footer to the bottom */
             display: flex;
             flex-direction: column;
             background: var(--bg-primary);
@@ -200,6 +331,10 @@
         }
 
         /* Footer */
+        .site-footer {
+            flex-shrink: 0; /* Prevents the footer from shrinking */
+        }
+
         .tools-footer {
             height: 32px;
             display: flex;
@@ -214,8 +349,6 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
@@ -246,9 +379,6 @@
             <span>Compass DevTools</span>
         </div>
         <div class="nav-right">
-            <button class="devtools-hamburger" id="toolsMenuBtn" aria-label="Toggle Menu">
-                <i class="fas fa-bars"></i>
-            </button>
             <div class="header-tabs" id="toolsTabs">
                 <button class="tab-btn active" onclick="switchTab('pr-gen'); toggleToolsMenu()">
                     <i class="fas fa-magic"></i> PR Generator
