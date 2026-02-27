@@ -1426,6 +1426,10 @@ body.dark-mode .sk {
 /* Highlight Top Cards */
 .top-contributors-grid {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+  justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
   align-items: stretch;
@@ -1449,6 +1453,7 @@ body.dark-mode .sk {
 
 .top-contributors-grid .contributor-card {
   width: 100%;
+  max-width: 320px;
   max-width: 100%;
   margin: 0 auto;
   display: flex;
@@ -1456,6 +1461,10 @@ body.dark-mode .sk {
   justify-content: center;
 }
 
+
+/* Hover Effect */
+.top-contributors-grid .contributor-card:hover {
+  transform: scale(1.08) translateY(-5px);
 /* ===== Fix Top Contributors Mobile Overflow ===== */
 @media (max-width: 768px) {
   .top-contributors-section {

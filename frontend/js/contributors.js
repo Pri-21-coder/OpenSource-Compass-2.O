@@ -83,6 +83,7 @@ async function loadAndRender() {
 
     setStatus("");
 renderTopContributors(visibleContributors);
+renderTopContributors(visibleContributors);
 renderContributorsGrid(grid, visibleContributors);
 updateStats(visibleContributors);
 
@@ -595,6 +596,61 @@ function renderTopContributors(contributors) {
   });
 }
 
+function renderTopContributors(contributors) {
+  const topGrid = document.getElementById("top-contributors-grid");
+  if (!topGrid) return;
+
+  // Use merged PRs (your actual metric)
+  const topThree = [...contributors]
+    .sort((a, b) => (b.merged_prs || 0) - (a.merged_prs || 0))
+    .slice(0, 3);
+
+  topGrid.innerHTML = "";
+
+  topThree.forEach((c, index) => {
+    const login = c?.login || "Anonymous";
+    const mergedPrs = c?.merged_prs || 0;
+    const avatar = c?.avatar_url
+      ? `${c.avatar_url}&s=200`
+      : fallbackAvatar(login);
+    const profileUrl = c?.html_url || "";
+
+    const card = document.createElement("div");
+    card.className = "contributor-card top-card";
+
+    card.innerHTML = `
+      <div class="contributor-card-inner">
+        <div class="top-rank-badge">
+          ${index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉"}
+        </div>
+        <img class="contributor-avatar" src="${avatar}" alt="${escapeHtml(login)} avatar" loading="lazy" />
+        <div class="contributor-main">
+          <div class="contributor-name">${escapeHtml(login)}</div>
+          <div class="contributor-meta">
+            <span class="contributor-chip">
+              <i class="fas fa-code-merge"></i>
+              ${mergedPrs} merged PR${mergedPrs === 1 ? "" : "s"}
+            </span>
+            <span class="contributor-chip is-top">
+              🏆 Top Contributor
+            </span>
+          </div>
+        </div>
+        <div class="contributor-actions">
+          ${
+            profileUrl
+              ? `<a class="contributor-github" href="${profileUrl}" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github"></i>
+                </a>`
+              : ""
+          }
+        </div>
+      </div>
+    `;
+
+    topGrid.appendChild(card);
+  });
+}
 function animateStatCounts() {
   const counters = document.querySelectorAll(".stat-count");
 
