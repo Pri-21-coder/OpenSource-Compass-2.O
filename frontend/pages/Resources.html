@@ -139,13 +139,16 @@
       }
     }
 
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
+   @keyframes shake {
+      0% { margin-left: 0; }
+      20% { margin-left: -8px; }
+      40% { margin-left: 8px; }
+      60% { margin-left: -6px; }
+      80% { margin-left: 6px; }
+      100% { margin-left: 0; }
     }
 
-    .level-item.shake-animation {
+    .level-item.shake-animation .level-node{
       animation: shake 0.3s ease-in-out !important;
     }
 
@@ -816,11 +819,14 @@
         renderLevels();
 
         function renderLevels() {
-          const childrenToRemove = [];
-          for (let i = 2; i < levelContainer.children.length; i++) {
-            childrenToRemove.push(levelContainer.children[i]);
-          }
-          childrenToRemove.forEach(child => child.remove());
+         // const childrenToRemove = [];
+         // for (let i = 2; i < levelContainer.children.length; i++) {
+        //  childrenToRemove.push(levelContainer.children[i]);
+         // }
+         // childrenToRemove.forEach(child => child.remove());
+
+         // Remove only level items, keep roadmap track and progress line
+          levelContainer.querySelectorAll('.level-item').forEach(el => el.remove());
 
           const totalLevels = levels.length;
           if (totalLevels > 1) {
