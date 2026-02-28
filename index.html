@@ -484,7 +484,7 @@
       .newsletter h3 {
         font-family: "Playfair Display", serif;
         font-size: 2.2rem;
-        color: #1a1a1a;
+        color: var(--newsletter-text-h);
         margin-bottom: 15px;
         position: relative;
         display: inline-block;
@@ -503,8 +503,8 @@
 
       .newsletter p {
         font-family: "Inter", sans-serif;
-        color: #555;
-        font-size: 1.1rem;
+        color: var(--newsletter-text-p);
+        font-size: 1rem;
         margin-bottom: 35px;
       }
 
@@ -528,12 +528,19 @@
         font-family: "Inter", sans-serif;
         transition: all 0.3s ease;
         outline: none;
+        background: var(--newsletter-input-bg);
+        color: var(--text-main);
       }
 
       .newsletter-form input[type="email"]:focus {
         border-color: #b59d5c;
         /* Golden border on focus */
         box-shadow: 0 0 0 4px rgba(181, 157, 92, 0.1);
+      }
+
+      .newsletter-form input::placeholder {
+        color: var(--newsletter-text-p);
+        opacity: 0.8;
       }
 
       .newsletter-form button {
@@ -1375,7 +1382,7 @@
         <div class="newsletter-container">
           <h3>Stay Ahead of Open Source</h3>
           <p>
-            Weekly dispatches: deadlines, AMAs, and contribution strategies.
+            Weekly dispatches: Deadlines, AMAs, and Contribution Strategies.
           </p>
           <form class="newsletter-form">
             <input type="email" placeholder="Your dev email..." required />
