@@ -1346,46 +1346,70 @@
             margin-bottom: 3.5rem;
         }
 
+        /* ===============================
+        BENEFITS GRID – CLEAN LAYOUT
+        =============================== */
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        /* ===============================
+        BENEFITS CARD – CLEAN BASE
+        =============================== */
+
         .benefits-card {
-            padding: 2rem 1.8rem;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(14px);
-            box-shadow: var(--shadow-main);
-            transition: transform 0.45s var(--bounce-curve),
-                box-shadow 0.35s ease;
-            text-align: left;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.8rem 2rem;
+            text-align: center;
+
+            border: 1px solid rgba(0, 0, 0, 0.06);
+
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+
+            transition: box-shadow 0.35s ease, border 0.35s ease;
         }
 
-        .benefits-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-
+        /* Proper spacing */
         .benefits-card h3 {
-            font-size: 1.05rem;
-            margin-bottom: 0.6rem;
-            color: var(--deep-navy);
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
         }
 
         .benefits-card p {
+            line-height: 1.7;
             font-size: 0.95rem;
-            line-height: 1.55;
-            color: var(--text-secondary);
         }
 
-        /* Highlight Card */
-        .benefits-card.highlight::after {
-            content: "";
-            position: absolute;
-            inset: -2px;
-            border-radius: 22px;
-            background: linear-gradient(135deg,
-                    var(--primary-gold),
-                    var(--secondary-gold));
-            opacity: 0.25;
-            filter: blur(20px);
-            z-index: -1;
+        /* ===============================
+        BORDER GLOW ON HOVER ONLY
+        =============================== */
+
+        .benefits-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.8rem 2rem;
+            text-align: center;
+
+            border: 1px solid rgba(0, 0, 0, 0.08);
+
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+
+            transition: box-shadow 0.3s ease, border 0.3s ease;
+        }
+
+        /* BORDER GLOW */
+        .benefits-card:hover {
+            border: 1px solid var(--primary-gold);
+
+            box-shadow:
+                0 0 0 3px rgba(212, 175, 55, 0.25),   /* outer glow ring */
+                0 20px 40px rgba(0, 0, 0, 0.18);     /* keep normal shadow */
         }
 
         /* Footer Note */
@@ -1920,16 +1944,6 @@
         .benefits-bg {
          opacity: 0.04 !important;
          filter: blur(80px) !important;
-        }
-
-        /* ==== Remove ALL Golden Borders from Cards ==== */
-
-        .benefits-card,
-        .card,
-        .highlight {
-         border: 1px solid rgba(255, 255, 255, 0.05) !important;
-         border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
-         box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35) !important;
         }
 
         /* Kill any leftover pseudo-border effects */
