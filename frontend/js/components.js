@@ -55,6 +55,80 @@ OpenSource Compass
 `;
 
 const footerHTML = `
+
+<footer class="site-footer">
+
+  <div class="footer-container">
+
+    <!-- Left: Brand -->
+    <div class="footer-brand">
+
+      <div class="footer-logo">
+        <i class="fas fa-compass"></i>
+        <span>OpenSource Compass</span>
+      </div>
+
+      <p class="footer-description">
+        Beginner-friendly platform guiding students and first-time contributors
+        in open source with structured paths, programs, and community support.
+      </p>
+
+      <div class="footer-badges">
+        <span class="footer-pill">Community-safe</span>
+        <span class="footer-pill">Beginner-ready</span>
+        <span class="footer-pill">Open source</span>
+      </div>
+
+    </div>
+
+
+    <!-- Middle: Explore -->
+    <div class="footer-column">
+
+      <h4>Explore</h4>
+
+      <a href="${getPath('index.html')}">Home</a>
+      <a href="${getPath('frontend/pages/guides.html')}">Guides</a>
+      <a href="${getPath('frontend/pages/programs.html')}">Programs</a>
+      <a href="${getPath('frontend/pages/Resources.html')}">Resources</a>
+
+    </div>
+
+
+    <!-- Right: Project -->
+    <div class="footer-column">
+
+      <h4>Project</h4>
+
+      <a href="${getPath('frontend/pages/contributors.html')}">Contributors</a>
+      <a href="${getPath('frontend/pages/Contribute.html')}">Contribute</a>
+      <a href="${getPath('frontend/pages/faq.html')}">FAQ</a>
+
+      <a href="https://github.com/sayeeg-11/OpenSource-Compass" target="_blank">
+        GitHub
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- Bottom -->
+  <div class="footer-bottom">
+
+    © <span id="footer-year"></span> OpenSource Compass
+
+    <span class="footer-dot">•</span>
+
+    <a href="https://github.com/sayeeg-11/OpenSource-Compass" target="_blank">
+      ⭐ Star on GitHub
+    </a>
+
+  </div>
+
+</footer>
+`;
+
 <footer class="site-footer" role="contentinfo" aria-label="Site footer">
 <div class="footer-shell">
 <div class="footer-top">
@@ -144,6 +218,7 @@ const footerHTML = `
    </div>
  </footer>
  `;
+
 
 // Inject components immediately
 const navbarContainer = document.getElementById('navbar');
