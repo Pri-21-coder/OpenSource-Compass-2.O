@@ -145,6 +145,7 @@ const footerHTML = `
  </footer>
  `;
 
+
 // Inject components immediately
 const navbarContainer = document.getElementById('navbar');
 const footerContainer = document.getElementById('footer');
